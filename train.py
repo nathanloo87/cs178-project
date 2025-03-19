@@ -2,7 +2,7 @@ from imports import *
 from cnn import SVHNCNN
 from load_dataset import train_loader, test_loader
 
-print("Loading Model...")  # Debugging print
+print("Loading Model...")  # debugging print
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
@@ -10,13 +10,13 @@ model = SVHNCNN().to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-# Check if data is loading correctly
+# check if data is loading correctly
 print(f"Train Loader: {len(train_loader)} batches")
 print(f"Test Loader: {len(test_loader)} batches")
 
 epochs = 10
 for epoch in range(epochs):
-    print(f"Starting Epoch {epoch+1}...")  # Debugging print
+    print(f"Starting Epoch {epoch+1}...")  # debugging print
     model.train()
     running_loss = 0.0
 
@@ -34,7 +34,7 @@ for epoch in range(epochs):
 
     print(f"Epoch {epoch+1} completed. Loss: {running_loss / len(train_loader)}")
 
-    # Validation Step
+    # validation Step
     model.eval()
     correct, total = 0, 0
     with torch.no_grad():
@@ -49,3 +49,9 @@ for epoch in range(epochs):
     print(f"Validation Accuracy after Epoch {epoch+1}: {accuracy:.2f}%")
 
 print("Training complete!")
+
+# oops forgot to save the trained model fukk
+model_path = "svhn_cnn.pth"
+torch.save(model.state_dict(), model_path)
+print(f"model saved to {model_path}")
+
