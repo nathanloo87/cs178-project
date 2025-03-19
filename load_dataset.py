@@ -15,8 +15,7 @@ train_loader = DataLoader(train_set, batch_size=64, shuffle=True)
 test_loader = DataLoader(test_set, batch_size=64, shuffle=False)
 
 # this one will check the image sampless
-images, labels = next(iter(train_loader))
-plt.imshow(images[0].permute(1, 2, 0))
-plt.title(f"Label: {labels[0]}")
-plt.show()
+plt.pause(1)  
+plt.close()   
+
 
