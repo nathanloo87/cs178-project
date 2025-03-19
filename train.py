@@ -2,6 +2,7 @@ from imports import *
 from cnn import SVHNCNN
 from load_dataset import train_loader, test_loader
 
+"""CURRENTLY FIXING"""
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = SVHNCNN().to(device)
 criterion = nn.CrossEntropyLoss()
