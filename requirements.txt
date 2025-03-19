@@ -1,0 +1,7 @@
+# this is the requirements txt this one contains all of our dependencies so make sure u pip install them before running
+torch
+torchvision
+numpy 
+matplotlib
+scipy
+h5py
