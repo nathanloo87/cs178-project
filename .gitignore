@@ -1,3 +1,4 @@
 data/
 data/test_32x32.mat
 data/train_32x32.mat
+__pycache__/
