@@ -18,7 +18,7 @@ X_hog = np.array([hog(img, pixels_per_cell=(8,8), cells_per_block=(2,2)) for img
 
 X_train, X_test, y_train, y_test = train_test_split(X_hog, y, test_size=0.2, random_state=seed)
 
-model = xgb.XGBClassifier(objective="multi:softmax", num_class=10, eval_metric="mlogloss", use_label_encoder=False)
+model = xgb.XGBClassifier(objective="multi:softmax", num_class=10, eval_metric="mlogloss")
 model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
