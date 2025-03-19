@@ -11,7 +11,7 @@ np.random.seed(seed)
 train_data = loadmat('train_32x32.mat')
 test_data = loadmat('test_32x32.mat')
 X = np.moveaxis(train_data['X'], -1, 0)
-y = train_data['y'].flatten()
+y = train_data['y'].flatten() - 1 # change the indices so that it matches with the array. Index starting at 0 vs 1
 X_gray = np.dot(X[..., :3], [0.2989, 0.5870, 0.1140])
 
 X_hog = np.array([hog(img, pixels_per_cell=(8,8), cells_per_block=(2,2)) for img in X_gray])
@@ -27,7 +27,6 @@ acc = accuracy_score(y_test, y_pred)
 print(f"XGBoost Accuracy on SVHN: {acc:.4f}")
 
 importance = model.feature_importances_
-
 plt.figure(figsize=(10, 5))
 plt.bar(range(len(importance)), importance)
 plt.xlabel("Feature Index")
