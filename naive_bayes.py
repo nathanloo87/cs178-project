@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
 from skimage.feature import hog
 from scipy.io import loadmat
@@ -19,5 +21,15 @@ X_train, X_test, y_train, y_test = train_test_split(X_hog, y, test_size=0.2, ran
 nb_model = GaussianNB()
 nb_model.fit(X_train, y_train)
 
+y_pred = nb_model.predict(X_test)
+cm = confusion_matrix(y_test, y_pred)
+
 accuracy = nb_model.score(X_test, y_test)
 print(f"Naïve Bayes Accuracy on SVHN: {accuracy:.4f}")
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", xticklabels=range(10), yticklabels=range(10))
+plt.xlabel("Predicted Label")
+plt.ylabel("True Label")
+plt.title("Confusion Matrix for Naïve Bayes on SVHN")
+plt.show()
