@@ -5,3 +5,5 @@ numpy
 matplotlib
 scipy
 h5py
+xgboost
+seaborn
